@@ -2,10 +2,9 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import React from 'react';
-import { render } from 'react-dom';
 
 
-class Home extends React.Component() {
+class Home extends React.Component {
   constructor(props){
     super(props)
   }
@@ -32,13 +31,7 @@ class Home extends React.Component() {
         <div className="wrapper">
               <h2>Space X Launches</h2>
               <ul>
-                {posts.map(({ node }) => {
-                  return (
-                    <li key={node.slug}>
-                      <ArticlePreview article={node} />
-                    </li>
-                  )
-                })}
+
               </ul>
             </div>
 
