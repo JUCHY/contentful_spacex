@@ -1,7 +1,9 @@
-import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import Link from 'next/link'
 import React from 'react';
+import { fetchEntries } from '@utils/contentfulLaunches'
+import LaunchCard from '@components/LaunchCard'
+import Layout from '@components/Layout'
+import CardDeck from 'react-bootstrap/CardDeck'
 
 
 class Home extends React.Component {
@@ -10,35 +12,41 @@ class Home extends React.Component {
   }
 
   render(){
-    return (
-      <div className={styles.container}>
-        <Head>
-          <title>Create Next App</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <ul>
-          <li>
-          <Link href="/">
-            <a>Homepage</a>
-          </Link>
-          </li>
-          <li>
-          <Link href="/launch-overview">
-            <a>Launch Overview</a>
-          </Link>
-          </li>
-        </ul>
-        <div className="wrapper">
-              <h2>Space X Launches</h2>
-              <ul>
 
-              </ul>
-            </div>
+    return (
+      <Layout>
+      <div className={styles.container}>
+        <h2>Space X Launches</h2>
+        <CardDeck>              
+              {this.props.launches.map((node) => {
+                console.log(node)
+                return (
+                        <LaunchCard launch={node}></LaunchCard>
+
+                )
+              })}
+            </CardDeck>
 
         </div>
+      </Layout>
       
-  )
-            }
+    )
+  }
+}
+
+export async function getStaticProps() {
+  const res = await fetchEntries()
+  console.log(res)
+  const launches = await res.map((p) => {
+    console.log(p)
+    return p
+  })
+
+  return {
+    props: {
+      launches,
+    },
+  }
 }
 
 export default Home;
