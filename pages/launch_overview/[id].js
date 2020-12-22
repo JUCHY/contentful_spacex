@@ -1,5 +1,6 @@
 import React from 'react';
 import { fetchEntries } from '@utils/getLaunchdata';
+import { fetchEntries  as pathEntries } from '@utils/contentfulLaunches';
 import Layout from '@components/Layout';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
@@ -85,12 +86,24 @@ Launch.propTypes = {
   }).isRequired).isRequired,
 };
 
-export async function getServerSideProps(context) {
-  const { id } = context.query;
+export async function getStaticProps({ params }) {
+  const { id } = params;
   const res = await fetchEntries(id);
+
   return {
     props: {
       launch: res,
     },
   };
+}
+
+export async function getStaticPaths() {
+  const res = await pathEntries('launch');
+  const launches = res.map((p) => p);
+
+  const paths = launches.map(launch => ({
+      params: {id: `${launch.sys.id}`},
+  }));
+
+  return {paths, fallback: true}
 }
