@@ -105,5 +105,5 @@ export async function getStaticPaths() {
       params: {id: `${launch.sys.id}`},
   }));
 
-  return {paths, fallback: true}
+  return {paths, fallback: false}
 }
