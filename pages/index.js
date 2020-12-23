@@ -69,7 +69,7 @@ function Home({ launches }) {
           ))}
         </CardDeck>
       </div>
-      {showPopup && <div className={styles.popup}><Popup launch={currLaunch.fields} close={Home.handleToggleOutside} /></div>}
+      {showPopup && <div onClick={toggle} className={styles.popup}><Popup launch={currLaunch.fields} close={Home.handleToggleOutside} /></div>}
     </Layout>
 
   );

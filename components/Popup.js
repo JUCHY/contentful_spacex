@@ -29,6 +29,7 @@ function Popup(props) {
 
   return (
     <div className={styles.popup_inner}>
+      <div className={styles.popup_card}>
       <div className={styles.backBtn}><Button onClick={props.close} variant="primary" color="secondary">BACK</Button></div>
       <img className={styles.cardLogo} src={missionPatchUrl} alt={`${name} Mission Patch`} />
       <div className={styles.cardLogoName}>{name}</div>
@@ -57,6 +58,7 @@ function Popup(props) {
       <div className={styles.cardSubHeading}>Launch Video</div>
       <hr />
       <iframe width="100%" height={500} title={`${name} Launch Video`} className={styles.center} src={`https://www.youtube.com/embed/${launchVideoId}`} />
+    </div>
     </div>
 
   );
