@@ -22,7 +22,6 @@ export default class Layout extends React.Component {
     return (
       <div>
         <Head>
-          <title>SpaceX Launches</title>
           <link rel="icon" type="image/jpg" href="/spacexlogo.jpg" />
         </Head>
         <div id="layoutVideo">
@@ -47,6 +46,6 @@ export default class Layout extends React.Component {
 }
 
 Layout.propTypes = {
-  children: PropTypes.element.isRequired,
-
+  children: PropTypes.oneOfType([PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element)]).isRequired,
 };

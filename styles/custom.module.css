@@ -2,6 +2,7 @@
 .container {
   min-height: 80vh;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -19,6 +20,7 @@
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
+
 
 .staticContainer {
   min-height: 80vh;
@@ -45,8 +47,41 @@
 .titleContainer{
   position: absolute;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  top: 50%;
+  left: 25%;
+  font-weight: bolder;
+  font-size: 1.2vw;
+  width: 50vw;
+  background-color: rgba(0,0,0,0.5);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: white;
+
 }
+
+.titleContainer p{
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.titleContainer div{
+  color: rgba(255, 255, 255, 0.6);
+}
+
+
+#scrolldown{
+  height: 5rem;
+  opacity: 0.7;
+  transition: height 1s, opacity 1s;
+}
+
+#scrolldown:hover{
+  opacity: 1;
+  height: 7rem;
+  cursor: pointer;
+}
+
+
 .main {
   padding: 5rem 0;
   flex: 1;
@@ -88,8 +123,11 @@
 
 .title {
   margin: 0;
-  line-height: 1.15;
+  line-height: 2;
   font-size: 4rem;
+  font-weight: bolder;
+
+  
 }
 
 .title,
@@ -177,11 +215,31 @@ img.cardLogo{
 
 }
 
+img.Logo{
+  width: 10rem;
+  border-radius: 50%;
+  top: 5rem;
+  padding-top: 2vh;
+
+
+}
+
 .cardLogoName{
   font-weight: bolder;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 5rem;
   position: relative;
+
+}
+
+.LogoName{
+  font-weight: bolder;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 3vw;
+  position: relative;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  color: midnightblue;
 
 }
 
@@ -231,3 +289,41 @@ img.cardLogo{
   margin-left: auto;
   margin-right: auto;
 }
+
+.flex{
+  display: flex;
+  margin: 5px;
+}
+
+.flex button{
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.popup {  
+  position: fixed;  
+  width: 100%;  
+  height: 100%;  
+  top: 0;  
+  left: 0;  
+  right: 0;  
+  bottom: 0;  
+  margin: auto;  
+  background-color: rgba(0,0,0, 0.5);  
+}  
+.popup_inner {  
+  position: absolute;  
+  left: 25%;  
+  right: 25%;  
+  top: 25%;  
+  bottom: 25%;  
+  margin: auto;  
+  border-radius: 20px;  
+  background: white;  
+  white-space: nowrap;
+  overflow-y: visible;
+  z-index: 100;
+  height: 80vh;
+  overflow-y: scroll;
+}
+

@@ -9,6 +9,10 @@
     "eslint app": "eslint */**.js"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "bootstrap": "^4.5.3",
     "contentful": "^8.1.4",
     "next": "10.0.3",
@@ -16,6 +20,8 @@
     "react": "17.0.1",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
+    "react-fontawesome": "^1.7.1",
+    "react-in-viewport": "^1.0.0-alpha.15",
     "redux": "^4.0.5",
     "video-react": "^0.14.1"
   },

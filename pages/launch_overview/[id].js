@@ -1,11 +1,12 @@
 import React from 'react';
+import Head from 'next/head';
 import { fetchEntries } from '@utils/getLaunchdata';
 import { fetchEntries  as pathEntries } from '@utils/contentfulLaunches';
 import Layout from '@components/Layout';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
-import styles from '../../styles/Home.module.css';
+import styles from '../../styles/custom.module.css';
 
 // source: http://web.archive.org/web/20160926134334/http://lasnv.net/foro/839/Javascript_parsear_URL_de_YouTube
 // Youtuber Parser, parses any type of Youtube URL and returns id
@@ -35,6 +36,11 @@ export default function Launch({ launch }) {
   const launchVideoId = youtubeParser(launchVideoUrl);
   return (
     <Layout>
+      <Head>
+        <title>SpaceX Launches | {name}</title>
+        <meta name="description" content={`Detailed Information about the ${name} launch`}/>
+        <meta name="keywords" content={`spaceX, launch, api, ${name}, ${rocketName}, ${rocketType}`}/>
+      </Head>
       <div className={styles.staticContainer}>
         <div className={styles.backBtn}><Link href="/" passHref><Button variant="primary" color="secondary">BACK</Button></Link></div>
         <img className={styles.cardLogo} src={missionPatchUrl} alt={`${name} Mission Patch`} />

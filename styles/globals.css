@@ -40,3 +40,16 @@ p.card-text{
   box-sizing: border-box;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+.card-deck{
+  flex-flow: wrap;
+  flex-grow: 1;
+
+}
+
+.card-deck .card{
+  flex: 1 0 25%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+}

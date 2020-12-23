@@ -1,44 +1,75 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { fetchEntries } from '@utils/contentfulLaunches';
 import LaunchCard from '@components/LaunchCard';
 import Layout from '@components/Layout';
 import CardDeck from 'react-bootstrap/CardDeck';
+import Popup from '@components/Popup.js';
 import PropTypes from 'prop-types';
-import styles from '../styles/Home.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import Head from 'next/head';
+import handleViewport from 'react-in-viewport';
+import styles from '../styles/custom.module.css';
+
+const ViewCard = handleViewport(LaunchCard);
 
 function Home({ launches }) {
+  const main = useRef(null);
+  const keywords = launches.map((launch) => launch.fields.name);
+  const [filterName, changeFilter] = useState('');
+  const [showPopup, togglePopup] = useState(false);
+  const [currLaunch, changeLaunch] = useState(null);
+  const toggle = () => { togglePopup(!showPopup); };
+  Home.handleToggleOutside = () => { toggle(); };
+  Home.changeLaunchOutside = (launch) => { changeLaunch(launch); };
+  let renderLaunches = launches;
+
+  if (filterName) {
+    renderLaunches = renderLaunches.filter((launch) => launch.fields.name.toLowerCase().includes(filterName.toLowerCase()));
+  }
+
   return (
     <Layout>
+      <Head>
+        <title>SpaceX Launches</title>
+        <meta
+          name="description"
+          content="A website to provide easy access
+        to information about SpaceX&apos;s rocket launches"
+        />
+        <meta name="keywords" content={`spaceX, launch, api, ${keywords.toString()}`} />
+      </Head>
       <div className={styles.titleContainer}>
-        <h2>Space X Launches</h2>
+        <h1 className={styles.title}>SPACE X LAUNCHES</h1>
         <p>
-          Space Exploration Technologies Corp. is an American aerospace manufacturer and space
-          transportation services company headquartered in Hawthorne, California.
-          It was founded in 2002 by Elon Musk with the goal of reducing space transportation
-          costs to enable the colonization of Mars.
+          SPACE EXPLORATION TECHNOLOGIES CORP. IS AN AMERICAN AEROSPACE MANUFACTURER AND SPACE
+          TRANSPORTATION SERVICES COMPANY HEADQUARTERED IN HAWTHORNE, CALIFORNIA.
+          IT WAS FOUNDED IN 2002 BY ELON MUSK WITH THE GOAL OF REDUCING SPACE TRANSPORTATION
+          COSTS TO ENABLE THE COLONIZATION OF MARS.
         </p>
         <div>
-          The goal of this website is to provide users easy access
-          of information about SpaceX&apos;s rocket launches to users
-          <div>
-            V
-          </div>
+          The goal of this website is to provide easy access
+          to information about SpaceX&apos;s rocket launches to users
         </div>
+        {/* Icons made by <a href="https://www.flaticon.com/authors/smashicons"
+          title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/"
+          title="Flaticon"> www.flaticon.com</a> */}
+        <FontAwesomeIcon icon={faCaretDown} id={styles.scrolldown} size="xs" onClick={() => { main.current.scrollIntoView({ behavior: 'smooth' }); }} />
       </div>
-      <div className={styles.container}>
-        <img className={styles.cardLogo} alt="SpaceX Logo" src="\spacexlogo.jpg" />
-        <div className={styles.cardLogoName}>SpaceX Launches</div>
-        <form>
-          <input type="text" />
-        </form>
+      <div ref={main} className={styles.container}>
+        <img className={styles.Logo} alt="SpaceX Logo" src="\spacexlogo.jpg" />
+        <hr />
+        <div className={styles.LogoName}>SpaceX Launches</div>
+        <hr />
+        <input type="text" value={filterName} onChange={(e) => { changeFilter(e.target.value); }} />
         <CardDeck>
-          {launches.map((launch) => (
-            <LaunchCard launch={launch} />
+          {renderLaunches.map((launch) => (
+            <ViewCard launch={launch} key={launch.sys.id} open={Home.handleToggleOutside} sendLaunchdata={Home.changeLaunchOutside} />
 
           ))}
         </CardDeck>
-
       </div>
+      {showPopup && <div className={styles.popup}><Popup launch={currLaunch.fields} close={Home.handleToggleOutside} /></div>}
     </Layout>
 
   );

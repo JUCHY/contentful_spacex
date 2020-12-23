@@ -13,5 +13,7 @@ export default MyApp;
 
 MyApp.propTypes = {
   Component: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
-  pageProps: PropTypes.objectOf(PropTypes.object).isRequired,
+  pageProps: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object])).isRequired,
 };
