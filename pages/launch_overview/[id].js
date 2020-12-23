@@ -7,11 +7,11 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
 import styles from '../../styles/custom.module.css';
+import Router from 'next/router'
+
 
 // source: http://web.archive.org/web/20160926134334/http://lasnv.net/foro/839/Javascript_parsear_URL_de_YouTube
 // Youtuber Parser, parses any type of Youtube URL and returns id
-//
-//
 
 function youtubeParser(url) {
   const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
@@ -42,7 +42,7 @@ export default function Launch({ launch }) {
         <meta name="keywords" content={`spaceX, launch, api, ${name}, ${rocketName}, ${rocketType}`}/>
       </Head>
       <div className={styles.staticContainer}>
-        <div className={styles.backBtn}><Link href="/" passHref><Button variant="primary" color="secondary">BACK</Button></Link></div>
+        <div className={styles.backBtn}><Button onClick={()=> Router.back()} variant="primary" color="secondary">BACK</Button></div>
         <img className={styles.cardLogo} src={missionPatchUrl} alt={`${name} Mission Patch`} />
         <div className={styles.cardLogoName}>{name}</div>
         <div className={styles.cardSubtitle}>
