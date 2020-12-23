@@ -25,7 +25,8 @@ function Home({ launches }) {
   let renderLaunches = launches;
 
   if (filterName) {
-    renderLaunches = renderLaunches.filter((launch) => launch.fields.name.toLowerCase().includes(filterName.toLowerCase()));
+    renderLaunches = renderLaunches
+      .filter((launch) => launch.fields.name.toLowerCase().includes(filterName.toLowerCase()));
   }
 
   return (
@@ -64,12 +65,23 @@ function Home({ launches }) {
         <input type="text" value={filterName} onChange={(e) => { changeFilter(e.target.value); }} />
         <CardDeck>
           {renderLaunches.map((launch) => (
-            <ViewCard launch={launch} key={launch.sys.id} open={Home.handleToggleOutside} sendLaunchdata={Home.changeLaunchOutside} />
+            <ViewCard
+              launch={launch}
+              key={launch.sys.id}
+              open={Home.handleToggleOutside}
+              sendLaunchdata={Home.changeLaunchOutside}
+            />
 
           ))}
         </CardDeck>
       </div>
-      {showPopup && <div onClick={toggle} className={styles.popup}><Popup launch={currLaunch.fields} close={Home.handleToggleOutside} /></div>}
+      {/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */}
+      {showPopup && (
+      <div role="dialog" onClick={toggle} onKeyDown={toggle} className={styles.popup}>
+        <Popup launch={currLaunch.fields} close={Home.handleToggleOutside} />
+      </div>
+      )}
+      {/* eslint-enable jsx-a11y/no-noninteractive-element-interactions */}
     </Layout>
 
   );
