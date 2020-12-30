@@ -27,38 +27,41 @@ function Popup({ launch, close }) {
   const launchVideoId = youtubeParser(launchVideoUrl);
 
   return (
-    <div className={styles.popup_inner} onClick={(e)=>{e.stopPropagation()}}>
-      <div className={styles.popup_card}>
-        <div className={styles.backBtn}><Button onClick={close} variant="primary" color="secondary">BACK</Button></div>
-        <img className={styles.cardLogo} src={missionPatchUrl} alt={`${name} Mission Patch`} />
-        <div className={styles.cardLogoName}>{name}</div>
-        <div className={styles.cardSubtitle}>
-          { new Date(launchDate).toDateString()}
-          {' '}
-          | Flight Number :
-          {' '}
-          {flightNumber}
-        </div>
-        <div className={styles.cardSubtitle}>{missionSuccess ? 'Mission Succeeded' : 'Mission Failed'}</div>
-        <div className={styles.subContainer}>
-          <div className={styles.leftSection}>
-            <div className={styles.cardSubHeading}>Launch Details</div>
+    <>
+      {/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */}
+      <div role="dialog" className={styles.popup_inner} onKeyDown={(e) => { e.stopPropagation(); }} onClick={(e) => { e.stopPropagation(); }}>
+        <div className={styles.popup_card}>
+          <div className={styles.backBtn}><Button onClick={close} variant="primary" color="secondary">BACK</Button></div>
+          <img className={styles.cardLogo} src={missionPatchUrl} alt={`${name} Mission Patch`} />
+          <div className={styles.cardLogoName}>{name}</div>
+          <div className={styles.cardSubtitle}>
+            { new Date(launchDate).toDateString()}
+            {' '}
+            | Flight Number :
+            {' '}
+            {flightNumber}
           </div>
-          <div className={styles.rightSection}>
-            <div className={styles.cardSubtitle}>{rocketName}</div>
-            <div className={styles.cardSubtitle}>{rocketType}</div>
+          <div className={styles.cardSubtitle}>{missionSuccess ? 'Mission Succeeded' : 'Mission Failed'}</div>
+          <div className={styles.subContainer}>
+            <div className={styles.leftSection}>
+              <div className={styles.cardSubHeading}>Launch Details</div>
+            </div>
+            <div className={styles.rightSection}>
+              <div className={styles.cardSubtitle}>{rocketName}</div>
+              <div className={styles.cardSubtitle}>{rocketType}</div>
+            </div>
           </div>
+          <hr />
+          <div className={styles.cardTextBody}>{launchDetails}</div>
+          <div className={styles.cardSubHeading}>Webcast Video</div>
+          <hr />
+          <iframe width="100%" height={500} title={`${name} Webcast Video`} className={styles.center} src={`https://www.youtube.com/embed/${webcastVideoId}`} />
+          <div className={styles.cardSubHeading}>Launch Video</div>
+          <hr />
+          <iframe width="100%" height={500} title={`${name} Launch Video`} className={styles.center} src={`https://www.youtube.com/embed/${launchVideoId}`} />
         </div>
-        <hr />
-        <div className={styles.cardTextBody}>{launchDetails}</div>
-        <div className={styles.cardSubHeading}>Webcast Video</div>
-        <hr />
-        <iframe width="100%" height={500} title={`${name} Webcast Video`} className={styles.center} src={`https://www.youtube.com/embed/${webcastVideoId}`} />
-        <div className={styles.cardSubHeading}>Launch Video</div>
-        <hr />
-        <iframe width="100%" height={500} title={`${name} Launch Video`} className={styles.center} src={`https://www.youtube.com/embed/${launchVideoId}`} />
       </div>
-    </div>
+    </>
 
   );
 }

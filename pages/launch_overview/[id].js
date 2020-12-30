@@ -1,14 +1,12 @@
 import React from 'react';
 import Head from 'next/head';
 import { fetchEntries } from '@utils/getLaunchdata';
-import { fetchEntries  as pathEntries } from '@utils/contentfulLaunches';
+import { fetchEntries as pathEntries } from '@utils/contentfulLaunches';
 import Layout from '@components/Layout';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
+import Router from 'next/router';
 import styles from '../../styles/custom.module.css';
-import Router from 'next/router'
-
 
 // source: http://web.archive.org/web/20160926134334/http://lasnv.net/foro/839/Javascript_parsear_URL_de_YouTube
 // Youtuber Parser, parses any type of Youtube URL and returns id
@@ -37,12 +35,15 @@ export default function Launch({ launch }) {
   return (
     <Layout>
       <Head>
-        <title>SpaceX Launches | {name}</title>
-        <meta name="description" content={`Detailed Information about the ${name} launch`}/>
-        <meta name="keywords" content={`spaceX, launch, api, ${name}, ${rocketName}, ${rocketType}`}/>
+        <title>
+          SpaceX Launches |
+          {name}
+        </title>
+        <meta name="description" content={`Detailed Information about the ${name} launch`} />
+        <meta name="keywords" content={`spaceX, launch, api, ${name}, ${rocketName}, ${rocketType}`} />
       </Head>
       <div className={styles.staticContainer}>
-        <div className={styles.backBtn}><Button onClick={()=> Router.back()} variant="primary" color="secondary">BACK</Button></div>
+        <div className={styles.backBtn}><Button onClick={() => Router.back()} variant="primary" color="secondary">BACK</Button></div>
         <img className={styles.cardLogo} src={missionPatchUrl} alt={`${name} Mission Patch`} />
         <div className={styles.cardLogoName}>{name}</div>
         <div className={styles.cardSubtitle}>
@@ -107,9 +108,9 @@ export async function getStaticPaths() {
   const res = await pathEntries('launch');
   const launches = res.map((p) => p);
 
-  const paths = launches.map(launch => ({
-      params: {id: `${launch.sys.id}`},
+  const paths = launches.map((launch) => ({
+    params: { id: `${launch.sys.id}` },
   }));
 
-  return {paths, fallback: false}
+  return { paths, fallback: false };
 }
