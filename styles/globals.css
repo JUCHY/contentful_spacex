@@ -29,11 +29,12 @@ p.card-text{
 }
 
 #layoutVideo{
-  position: fixed;
-  right: 0;
-  bottom: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   min-width: 100%;
   min-height: 100%;
+  transform: translate(-50%,-50%);
 }
 
 * {
@@ -51,5 +52,32 @@ p.card-text{
   flex: 1 0 25%;
   margin-top: 1rem;
   margin-bottom: 1rem;
+
+}
+
+#layoutVideo{
+  display: none;
+}
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .card-deck .card{
+    flex: 100%;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .card-deck .card{
+    flex: 30%;
+  }
+}
+
+
+@media only screen and (min-width: 768px) {
+  #layoutVideo{
+    display: block;
+  }
 
 }

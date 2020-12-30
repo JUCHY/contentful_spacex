@@ -27,7 +27,7 @@ function Popup({ launch, close }) {
   const launchVideoId = youtubeParser(launchVideoUrl);
 
   return (
-    <div className={styles.popup_inner}>
+    <div className={styles.popup_inner} onClick={(e)=>{e.stopPropagation()}}>
       <div className={styles.popup_card}>
         <div className={styles.backBtn}><Button onClick={close} variant="primary" color="secondary">BACK</Button></div>
         <img className={styles.cardLogo} src={missionPatchUrl} alt={`${name} Mission Patch`} />
