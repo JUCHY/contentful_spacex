@@ -1,7 +1,9 @@
+/* eslint react/forbid-prop-types: 0 */
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
+import { Image } from 'next/image';
 import styles from '../styles/custom.module.css';
 
 function getStyle(inViewport, enterCount) {
@@ -34,13 +36,14 @@ function LaunchCard({
       <Card style={getStyle(inViewport, enterCount)} ref={forwardedRef}>
         <Card.Body>
           <Card.Title>{name}</Card.Title>
-          <Card.Img variant="top" src={missionPatchUrl} alt={`${name} Mission Patch`} />
+          <Card.Img as={Image} layout="fill" variant="top" src={missionPatchUrl} alt={`${name} Mission Patch`} />
           <Card.Text>{launchDetails}</Card.Text>
           <div className={styles.flex}>
             <Button href={`/launch_overview/${id}`} variant="danger">Learn More</Button>
             <Button onClick={handlePopupClick} variant="primary">View Now</Button>
           </div>
         </Card.Body>
+
       </Card>
     </>
 
@@ -64,7 +67,7 @@ LaunchCard.propTypes = {
     // Either a function
     PropTypes.func,
     // Or the instance of a DOM native element (see the note about SSR)
-    PropTypes.shape({ current: PropTypes.instanceOf(PropTypes.element) }),
+    PropTypes.shape({ current: PropTypes.any }),
   ]).isRequired,
   open: PropTypes.func.isRequired,
   sendLaunchdata: PropTypes.func.isRequired,

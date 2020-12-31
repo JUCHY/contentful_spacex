@@ -47,5 +47,5 @@ export default class Layout extends React.Component {
 
 Layout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.element,
-    PropTypes.arrayOf(PropTypes.element)]).isRequired,
+    PropTypes.arrayOf(PropTypes.object)]).isRequired,
 };

@@ -62,7 +62,10 @@ function Home({ launches }) {
         <hr />
         <div className={styles.LogoName}>SpaceX Launches</div>
         <hr />
-        <input type="text" value={filterName} onChange={(e) => { changeFilter(e.target.value); }} />
+        <label htmlFor="search">
+          Search Launches
+          <input id="search" name="search" type="text" value={filterName} onChange={(e) => { changeFilter(e.target.value); }} />
+        </label>
         <CardDeck>
           {renderLaunches.map((launch) => (
             <ViewCard

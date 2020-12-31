@@ -28,6 +28,10 @@ p.card-text{
   overflow:hidden;
 }
 
+.card-body div{
+  position: initial;
+}
+
 #layoutVideo{
   position: absolute;
   top: 50%;

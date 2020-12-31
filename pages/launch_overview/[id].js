@@ -30,6 +30,7 @@ export default function Launch({ launch }) {
     webcastVideoUrl,
     launchVideoUrl,
   } = launch[0].fields;
+
   const webcastVideoId = youtubeParser(webcastVideoUrl);
   const launchVideoId = youtubeParser(launchVideoUrl);
   return (
@@ -79,14 +80,14 @@ export default function Launch({ launch }) {
 Launch.propTypes = {
   launch: PropTypes.arrayOf(PropTypes.shape({
     fields: PropTypes.shape({
-      flightNumber: PropTypes.number.isRequired,
-      launchDate: PropTypes.string.isRequired,
-      launchDetails: PropTypes.string.isRequired,
-      missionSuccess: PropTypes.bool.isRequired,
-      name: PropTypes.string.isRequired.isRequired,
-      missionPatchUrl: PropTypes.string.isRequired,
-      rocketName: PropTypes.string.isRequired,
-      rocketType: PropTypes.string.isRequired,
+      flightNumber: PropTypes.number,
+      launchDate: PropTypes.string,
+      launchDetails: PropTypes.string,
+      missionSuccess: PropTypes.bool,
+      name: PropTypes.string,
+      missionPatchUrl: PropTypes.string,
+      rocketName: PropTypes.string,
+      rocketType: PropTypes.string,
       webcastVideoUrl: PropTypes.string,
       launchVideoUrl: PropTypes.string,
     }).isRequired,
