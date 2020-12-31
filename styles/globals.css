@@ -28,22 +28,16 @@ p.card-text{
   overflow:hidden;
 }
 
+label{
+  font-weight: bolder;
+}
+
+.btn{
+  font-weight: bolder;
+}
+
 .card-body div{
   position: initial;
-}
-
-#layoutVideo{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  transform: translate(-50%,-50%);
-}
-
-* {
-  box-sizing: border-box;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .card-deck{
@@ -60,7 +54,18 @@ p.card-text{
 }
 
 #layoutVideo{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%,-50%);
   display: none;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 

@@ -40,7 +40,7 @@ function LaunchCard({
           <Card.Text>{launchDetails}</Card.Text>
           <div className={styles.flex}>
             <Button href={`/launch_overview/${id}`} variant="danger">Learn More</Button>
-            <Button onClick={handlePopupClick} variant="primary">View Now</Button>
+            <Button onClick={handlePopupClick} variant="primary">View Popup</Button>
           </div>
         </Card.Body>
 
