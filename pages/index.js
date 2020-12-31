@@ -62,10 +62,11 @@ function Home({ launches }) {
         <hr />
         <div className={styles.LogoName}>SpaceX Launches</div>
         <hr />
+        {/* eslint-disable jsx-a11y/label-has-associated-control */}
         <label htmlFor="search">
           Search Launches
-          <input id="search" name="search" type="text" value={filterName} onChange={(e) => { changeFilter(e.target.value); }} />
         </label>
+        <input id="search" name="search" type="text" value={filterName} onChange={(e) => { changeFilter(e.target.value); }} />
         <CardDeck>
           {renderLaunches.map((launch) => (
             <ViewCard
