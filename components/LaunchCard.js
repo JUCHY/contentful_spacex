@@ -36,7 +36,7 @@ function LaunchCard({
       <Card style={getStyle(inViewport, enterCount)} ref={forwardedRef}>
         <Card.Body>
           <Card.Title>{name}</Card.Title>
-          <Card.Img as={Image} unoptimized layout="fill" variant="top" src={missionPatchUrl} alt={`${name} Mission Patch`} />
+          <Card.Img as={Image} unoptimized loading="lazy" layout="fill" variant="top" src={missionPatchUrl} alt={`${name} Mission Patch`} />
           <Card.Text>{launchDetails}</Card.Text>
           <div className={styles.flex}>
             <Button href={`/launch_overview/${id}`} variant="danger">Learn More</Button>
